@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Thoni</title>
+    <!-- Import fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='background-decorations.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+                <li><a href="{{ url_for('ask') }}">Ask CV</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            </ul>
+        </div>
+    </nav>    
+    
+    <div class="content-container">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        
+        <script src="{{ url_for('static', filename='background-decorations.js') }}"></script>
+        
+        <div class="tagline">MORE THAN JUST A DATA ENTHUSIAST</div>
+        <h1>About Me</h1>
+        <p>Passionate about transforming complex data into actionable insights.</p>
+        
+        <div class="experience-section">
+            <div class="experience-heading">Professional Journey</div>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <span class="company">StickEarn</span> - Pioneered Business Intelligence strategies, leading a team to optimize data-driven decision-making.
+                </div>
+                <div class="experience-item">
+                    <span class="company">Pintu</span> - Architected scalable real-time analytics solutions, driving performance and innovation.
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-section">
+            <div class="experience-heading">Skills</div>
+            <div class="experience-list">
+                <div class="experience-item">
+                    Data Analytics • Business Intelligence • Real-time Reporting
+                </div>
+                <div class="experience-item">
+                    Python • SQL • Tableau • Power BI • Google Analytics
+                </div>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://instagram.com/thonisho" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/thonisho" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/in/as-sulthoni/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <div class="contact">
+            <p>Visit my public notes: <a href="/notes" aria-label="Public Notes">Public Notes</a></p>
+            <p>Want to collaborate? <a href="mailto:hi.aslthoni@gmail.com">Let's connect</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+init_admin.py
+__pycache__
+notes.db
+.env
+venv

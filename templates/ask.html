@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask About My CV - Thoni</title>
+    <!-- Import fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='background-decorations.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('ask') }}" class="active">Ask CV</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            </ul>
+        </div>
+    </nav>    
+    
+    <div class="content-container">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        
+        <script src="{{ url_for('static', filename='background-decorations.js') }}"></script>
+        
+        <div class="tagline">THONI CV ASSISTANT</div>
+        <h1>Ask About My CV</h1>
+        <p>Got questions about my professional background? Ask away!</p>
+        
+        <div class="cv-qa-container">
+            <input type="text" id="questionInput" class="question-input" placeholder="Ask a question about my CV...">
+            <button id="submitQuestion" class="submit-btn">Submit Question</button>
+            
+            <div id="answerContainer" class="answer-container">
+                <p class="answer-placeholder">Your answer will appear here. Feel free to ask about my experience, skills, or professional journey.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionInput = document.getElementById('questionInput');
+        const submitButton = document.getElementById('submitQuestion');
+        const answerContainer = document.getElementById('answerContainer');
+
+        async function askQuestion(question) {
+            try {
+                // Show loading state
+                answerContainer.innerHTML = '<p class="answer-placeholder">Loading answer...</p>';
+                
+                const response = await fetch('/api/ask-cv', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question: question })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP error! Status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error asking question:', error);
+                return { 
+                    question: question,
+                    answer: 'Sorry, there was an error processing your request.'
+                };
+            }
+        }
+
+        submitButton.addEventListener('click', async () => {
+            const userQuestion = questionInput.value.trim();
+        
+            if (!userQuestion) {
+                answerContainer.innerHTML = '<p class="answer-placeholder">Please enter a question.</p>';
+                return;
+            }
+            
+            const result = await askQuestion(userQuestion);
+
+            answerContainer.innerHTML = `
+                <p><strong>Q:</strong> ${result.question}</p>
+                <div><strong>A:</strong> ${result.answer}</div>
+            `;
+        
+            questionInput.value = '';
+        });
+
+        // Allow submission by pressing Enter
+        questionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitButton.click();
+            }
+        });
+
+    </script>
+</body>
+</html>

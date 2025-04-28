@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoni - Personal Site</title>
+    <!-- Import fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='background-decorations.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('ask') }}">Ask CV</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            </ul>
+        </div>
+    </nav>   
+    
+    <div class="content-container">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        
+        <div class="tagline">I'm not lazy, I'm just in beta testing.</div>
+        <h1>Thoni</h1>
+        <p>Hi, Welcome to my digital space.</p>
+
+        <div class="social-links">
+            <a href="https://instagram.com/thonisho" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/thonisho" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/in/as-sulthoni/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <!-- <a href="https://thoni.notion.site/Thoni-Notes-1ac59d36d12080d98505ea0d48490b19/" target="_blank" aria-label="Notion Blog"><i class="fa-solid fa-note-sticky"></i></a> -->
+        </div>
+
+    </div>
+    
+    <script src="{{ url_for('static', filename='background-decorations.js') }}"></script>
+</body>
+</html>

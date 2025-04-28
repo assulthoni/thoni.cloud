@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note - Thoni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/background-decorations.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('ask') }}">Ask CV</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            </ul>
+        </div>
+    </nav>    
+    
+    <div class="content-container">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        
+        <script src="/static/background-decorations.js"></script>
+        
+        <div class="tagline">EDIT NOTE</div>
+        <h1>Edit Note</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form class="note-form" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required maxlength="100" class="form-control" value="{{ note.title }}">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" required maxlength="1000" class="form-control" rows="10">{{ note.content }}</textarea>
+                <div class="character-count">{{ note.content|length }}/1000 characters</div>
+            </div>
+            <div class="form-actions">
+                <a href="{{ url_for('notes') }}" class="button secondary-button">Cancel</a>
+                <button type="submit" class="button primary-button">Update Note</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('content').addEventListener('input', function() {
+            const maxLength = 1000;
+            const currentLength = this.value.length;
+            document.querySelector('.character-count').textContent = `${currentLength}/${maxLength} characters`;
+        });
+    </script>
+</body>
+</html>
