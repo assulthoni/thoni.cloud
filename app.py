@@ -198,6 +198,10 @@ def ask_cv():
     except Exception as e:
         return jsonify({'error': f'An unexpected error occurred: {str(e)}'}), 500
 
+@app.route('/cha-birthday')
+def birthday():
+    return render_template('birthday.html')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

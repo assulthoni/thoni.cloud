@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icha's Birthday Countdown</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/fireworks.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Icha's Birthday Countdown!</h1>
+        <div id="countdown">
+            <div class="time">
+                <span id="days"></span>days
+            </div>
+            <div class="time">
+                <span id="hours"></span>hours
+            </div>
+            <div class="time">
+                <span id="minutes"></span>minutes
+            </div>
+            <div class="time">
+                <span id="seconds"></span>seconds
+            </div>
+        </div>
+        <button id="greetingsButton" style="display:none;">Open Greetings!</button>
+        
+    </div>
+    
+    <!-- Birthday Modal -->
+    <div id="birthdayModal" class="modal">
+        <!-- Fireworks Elements -->
+        <div class="pyro">
+            <div class="before"></div>
+            <div class="after"></div>
+            <div class="middle"></div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-body">
+                <h2>Happy Birthday Icha! 🎉</h2>
+                <div class="birthday-photo">
+                    <img src="/static/icha-photo.png" alt="Icha's Photo" id="birthday-img">
+                </div>
+                <p class="birthday-wish">Wishing you a wonderful day filled with happiness and all the things that bring you joy!</p>
+                <a href="https://wa.me/6287835572967?text=makasih mas" class="message-btn">Send Me a Message! 💬</a>
+            </div>
+        </div>
+    </div>
+    <script src="/static/birthday.js"></script>
+</body>
+</html>

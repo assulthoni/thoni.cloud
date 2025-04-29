@@ -1,0 +1,368 @@
+/* Feminine and Fun Birthday Countdown Styles */
+
+/* Color Variables */
+:root {
+    --primary-color: #ff85a2; /* Soft pink */
+    --secondary-color: #ffb8c6; /* Lighter pink */
+    --accent-color: #ff5c8d; /* Bright pink */
+    --accent2-color: #c792ea; /* Purple */
+    --text-color: #4a4a4a; /* Dark gray for readability */
+    --bg-color: #fff8fa; /* Very light pink background */
+    --container-bg: rgba(255, 255, 255, 0.85);
+    --shadow-color: rgba(255, 133, 162, 0.3);
+    --border-color: #ffe0e9;
+}
+
+/* General Styles */
+body {
+    background: var(--bg-color) url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25,30 Q35,10 50,30 T75,30 Q85,10 75,50 T50,70 Q35,90 25,70 T25,30" fill="%23ffb8c6" fill-opacity="0.2"/></svg>') repeat;
+    font-family: 'Quicksand', 'Poppins', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    animation: backgroundFloat 60s ease-in-out infinite alternate;
+}
+
+/* Container Styling */
+.container {
+    background: var(--container-bg);
+    width: 90%;
+    max-width: 600px;
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px var(--shadow-color), 
+                0 0 20px rgba(255, 255, 255, 0.9) inset;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+    animation: floatUp 1s ease-out forwards;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Decorative Elements */
+.container::before,
+.container::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.4;
+    filter: blur(20px);
+}
+
+.container::before {
+    background: var(--accent-color);
+    top: -30px;
+    left: -30px;
+    animation: floatBubble 8s ease-in-out infinite alternate;
+}
+
+.container::after {
+    background: var(--accent2-color);
+    bottom: -30px;
+    right: -30px;
+    animation: floatBubble 10s ease-in-out infinite alternate;
+}
+
+/* Header Styling */
+h1 {
+    font-size: 2.8rem;
+    margin: 0 0 1.5rem;
+    color: var(--accent-color);
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(255, 133, 162, 0.2);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, var(--secondary-color) 0%, rgba(255,226,233,0) 100%);
+    bottom: -5px;
+    left: 0;
+    border-radius: 10px;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: slideIn 1s 0.5s ease forwards;
+}
+
+/* Countdown Container */
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    position: relative;
+    padding: 1rem 0.5rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 15px rgba(255, 133, 162, 0.2);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.time:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 133, 162, 0.3);
+}
+
+.time span {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.time:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+    border-radius: 16px;
+    z-index: -1;
+}
+
+/* Button Styling */
+#greetingsButton {
+    background: linear-gradient(45deg, var(--accent-color), var(--accent2-color));
+    color: white;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 92, 141, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 1.5rem;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    overflow: auto;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #fff8f9, #fff);
+    margin: 10% auto;
+    width: 85%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(255, 133, 162, 0.3);
+    border: 2px solid var(--border-color);
+    padding: 20px;
+    position: relative;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transform: scale(0.8);
+    opacity: 0;
+}
+
+.modal-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: var(--accent-color);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover {
+    color: var(--accent2-color);
+}
+
+.birthday-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(255, 133, 162, 0.4);
+}
+
+.birthday-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.birthday-wish {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.message-btn {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--accent-color), var(--accent2-color));
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 92, 141, 0.3);
+}
+
+.message-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(255, 92, 141, 0.5);
+    animation: pulse 2s infinite;
+    z-index: 2;
+}
+
+#greetingsButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+#greetingsButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(255, 92, 141, 0.4);
+}
+
+#greetingsButton:hover::before {
+    left: 100%;
+}
+
+#greetingsButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255, 92, 141, 0.3);
+}
+
+/* Animation Keyframes */
+@keyframes floatUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    70% { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+    100% { transform: scaleX(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes floatBubble {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-20px) scale(1.1); }
+}
+
+@keyframes backgroundFloat {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 1.5rem;
+        width: 85%;
+    }
+    
+    #countdown {
+        gap: 0.7rem;
+    }
+    
+    .time {
+        min-width: 70px;
+    }
+    
+    .time span {
+        font-size: 1.8rem;
+    }
+}
+
+/* Additional Decorative Elements */
+/* Can only be seen when hovering over elements */
+.time:hover::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1L15.36,7.17L22,8.11L17,12.86L18.18,19.4L12,16.36L5.82,19.4L7,12.86L2,8.11L8.64,7.17L12,1Z" fill="%23ffb8c6"/></svg>');
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: translateX(-50%) rotate(360deg); }
+}

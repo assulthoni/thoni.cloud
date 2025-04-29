@@ -1,0 +1,183 @@
+/* Emoji Fireworks Animation Styles */
+.pyro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    pointer-events: none;
+    display: none;
+}
+
+.pyro > .before, .pyro > .after, .pyro > .middle, .pyro > .top, .pyro > .bottom {
+    position: absolute;
+    font-size: 24px;
+    animation: emoji-firework 1.5s ease-out infinite backwards;
+    opacity: 0;
+}
+
+/* Position the emoji elements at different locations */
+.pyro > .before {
+    top: 20%;
+    left: 30%;
+}
+
+.pyro > .after {
+    top: 40%;
+    left: 70%;
+    animation-delay: 0.5s;
+}
+
+.pyro > .middle {
+    top: 60%;
+    left: 45%;
+    animation-delay: 0.3s;
+}
+
+.pyro > .top {
+    top: 15%;
+    left: 60%;
+    animation-delay: 0.7s;
+}
+
+.pyro > .bottom {
+    top: 75%;
+    left: 20%;
+    animation-delay: 0.2s;
+}
+
+/* Create more emoji particles using before/after elements */
+.pyro > .before:before {
+    content: "🎉";
+    position: absolute;
+    top: -50px;
+    left: 40px;
+    animation: emoji-pop 2s ease-out infinite;
+}
+
+.pyro > .before:after {
+    content: "🔥";
+    position: absolute;
+    top: 60px;
+    left: -30px;
+    animation: emoji-pop 1.7s ease-out infinite 0.3s;
+}
+
+.pyro > .after:before {
+    content: "🎊";
+    position: absolute;
+    top: 30px;
+    left: -50px;
+    animation: emoji-pop 2.3s ease-out infinite 0.5s;
+}
+
+.pyro > .after:after {
+    content: "🫶";
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    animation: emoji-pop 1.9s ease-out infinite 0.7s;
+}
+
+/* Additional emoji particles for middle, top and bottom */
+.pyro > .middle:before {
+    content: "✨";
+    position: absolute;
+    top: -35px;
+    left: 25px;
+    animation: emoji-pop 1.8s ease-out infinite 0.2s;
+}
+
+.pyro > .middle:after {
+    content: "💫";
+    position: absolute;
+    top: 45px;
+    left: -20px;
+    animation: emoji-pop 2.1s ease-out infinite 0.4s;
+}
+
+.pyro > .top:before {
+    content: "⭐";
+    position: absolute;
+    top: -55px;
+    left: 15px;
+    animation: emoji-pop 2.4s ease-out infinite 0.1s;
+}
+
+.pyro > .top:after {
+    content: "💕";
+    position: absolute;
+    top: 30px;
+    left: -40px;
+    animation: emoji-pop 1.9s ease-out infinite 0.6s;
+}
+
+.pyro > .bottom:before {
+    content: "🎵";
+    position: absolute;
+    top: -45px;
+    left: 35px;
+    animation: emoji-pop 2.2s ease-out infinite 0.3s;
+}
+
+.pyro > .bottom:after {
+    content: "🎈";
+    position: absolute;
+    top: 55px;
+    left: -25px;
+    animation: emoji-pop 1.6s ease-out infinite 0.8s;
+}
+
+/* Main animation that makes emoji appear and move */
+@keyframes emoji-firework {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x, 50px), var(--y, -50px));
+        opacity: 0;
+    }
+}
+
+/* Additional directional animations for more variety */
+.pyro > .middle {
+    --x: -40px;
+    --y: -60px;
+}
+
+.pyro > .top {
+    --x: 60px;
+    --y: -30px;
+}
+
+.pyro > .bottom {
+    --x: -50px;
+    --y: 40px;
+}
+
+/* Animation for the emoji pop effect */
+@keyframes emoji-pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
