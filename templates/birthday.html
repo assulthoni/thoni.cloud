@@ -25,7 +25,7 @@
             </div>
         </div>
         <button id="greetingsButton" style="display:none;">Open Greetings!</button>
-        
+        <audio id="birthdayMusic" src="/static/music.mp3" preload="auto"></audio>
     </div>
     
     <!-- Birthday Modal -->
@@ -43,9 +43,15 @@
             <div class="modal-body">
                 <h2>Happy Birthday Icha! 🎉</h2>
                 <div class="birthday-photo">
-                    <img src="/static/icha-photo.png" alt="Icha's Photo" id="birthday-img">
+                    <div class="slideshow-container">
+                        <img src="/static/icha/icha-photo.png" alt="Icha's Photo" id="birthday-img" class="active">
+                        <button class="nav-btn prev-btn" onclick="prevSlide()">&lt;</button>
+                        <button class="nav-btn next-btn" onclick="nextSlide()">&gt;</button>
+                    </div>
+                    <div class="dots-container" id="dots"></div>
                 </div>
-                <p class="birthday-wish">Wishing you a wonderful day filled with happiness and all the things that bring you joy!</p>
+                <div id="rotating-message" class="birthday-message"></div>
+                
                 <a href="https://wa.me/6287835572967?text=makasih mas" class="message-btn">Send Me a Message! 💬</a>
             </div>
         </div>

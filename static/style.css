@@ -170,6 +170,54 @@ h1::after {
     margin-top: 1.5rem;
 }
 
+.birthday-message {
+    font-size: 1.4rem;
+    color: var(--accent-color);
+    font-family: 'Quicksand', 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: linear-gradient(120deg, rgba(255,255,255,0.9), rgba(255,226,233,0.9));
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 133, 162, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: messageFloat 3s ease-in-out infinite alternate;
+}
+
+.birthday-message::before,
+.birthday-message::after {
+    content: '💝';
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.birthday-message::before {
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.birthday-message::after {
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes messageFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
 /* Modal Styling */
 .modal {
     display: none;
@@ -220,19 +268,84 @@ h1::after {
 }
 
 .birthday-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: min(300px, 80vw);
+    height: min(300px, 80vw);
     margin: 20px auto;
+    position: relative;
+}
+
+.slideshow-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
     overflow: hidden;
     border: 5px solid white;
     box-shadow: 0 5px 15px rgba(255, 133, 162, 0.4);
+    position: relative;
 }
 
 .birthday-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    /* Remove transform to avoid ellipse distortion */
+}
+
+.birthday-photo img.active {
+    opacity: 1;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #ff5c8d;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.dots-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #ff5c8d;
 }
 
 .birthday-wish {
@@ -249,6 +362,7 @@ h1::after {
     text-decoration: none;
     font-weight: 600;
     padding: 0.8rem 1.8rem;
+    margin-top: 1.8rem;
     border-radius: 50px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 92, 141, 0.3);
