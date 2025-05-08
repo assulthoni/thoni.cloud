@@ -127,6 +127,18 @@ def about():
 def ask():
     return render_template('ask.html')
 
+@app.route('/bubblemumble', methods=['GET'])
+def bubblemummble():
+    return render_template('bubblemumble.html')
+
+@app.route('/flappy', methods=['GET'])
+def flappy():
+    return render_template('flappy.html')
+
+@app.route('/maze', methods=['GET'])
+def maze():
+    return render_template('maze.html')
+
 @app.route('/api/ask-cv', methods=['POST'])
 def ask_cv():
     data = request.json

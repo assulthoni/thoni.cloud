@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flappy Bird Simple Clone</title>
+  <style>
+    body { background: #70c5ce; margin: 0; display: flex; flex-direction: column; align-items: center; }
+    canvas { background: #4ec0ca; display: block; margin: 40px auto 0; border-radius: 12px; box-shadow: 0 4px 24px #3333; }
+    .score { font-family: Arial, sans-serif; font-size: 2em; color: #fff; margin-top: 10px; text-shadow: 1px 1px 4px #000a; }
+    .restart-btn { display: none; margin-top: 20px; padding: 10px 24px; font-size: 1.2em; border: none; border-radius: 8px; background: #ffb300; color: #fff; cursor: pointer; box-shadow: 0 2px 8px #0002; }
+    .restart-btn:active { background: #ffa000; }
+  </style>
+</head>
+<body>
+  
+  <div class="score" id="score">Score: 0</div>
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+  <button style="margin-top:30px; background:#fff0f6; color:#ff5c8d; border:2px solid #ffb3d1; border-radius:8px; padding:8px 20px; font-size:1em; font-family:'Quicksand',Arial,sans-serif; box-shadow:0 2px 8px #ffb3d155; cursor:pointer;" id="restartBtn">Restart</button>
+  <script src="/static/game.js"></script>
+  <button style="margin-top:30px; background:#fff0f6; color:#ff5c8d; border:2px solid #ffb3d1; border-radius:8px; padding:8px 20px; font-size:1em; font-family:'Quicksand',Arial,sans-serif; box-shadow:0 2px 8px #ffb3d155; cursor:pointer;">
+    <a href="/bubblemumble" style="color:#ff5c8d; text-decoration:none;">back</a>
+  </button>
+</body>
+</html>
