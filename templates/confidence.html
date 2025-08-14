@@ -42,13 +42,16 @@
         .capture-container {
             border: 2px solid #dcdde1;
             border-radius: 10px;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 15px;
             background-color: #fff;
             flex: 1 1 300px;
             min-width: 280px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: fit-content;
         }
 
         video {
@@ -59,6 +62,7 @@
             border-radius: 8px;
             max-height: 400px;
             object-fit: cover;
+            flex-shrink: 0;
         }
 
         #capture-result img {
@@ -84,6 +88,8 @@
             flex-direction: column;
             gap: 10px;
             margin-top: 15px;
+            flex-shrink: 0;
+            width: 100%;
         }
 
         #clearBtn,
@@ -129,6 +135,8 @@
             border-radius: 8px;
             color: #6c757d;
             font-style: italic;
+            flex-grow: 1;
+            overflow: hidden;
         }
 
         #capture-result:empty::after {
@@ -145,24 +153,43 @@
                 flex-direction: column;
                 gap: 15px;
                 padding: 0 5px;
+                max-width: 100%;
             }
             
             .video-container,
             .capture-container {
-                flex: 1 1 100%;
+                flex: none;
+                width: 100%;
                 min-width: unset;
                 padding: 10px;
+                min-height: auto;
+                height: auto;
+                max-width: 100%;
+            }
+            
+            video {
+                max-height: 40vh;
+                width: 100%;
+                max-width: 100%;
             }
             
             .button-container {
                 flex-direction: row;
                 justify-content: space-between;
+                margin-top: 10px;
+                flex-shrink: 0;
+            }
+            
+            #capture-result {
+                min-height: 30vh;
+                max-height: 40vh;
             }
             
             #clearBtn,
             #captureBtn {
                 flex: 1;
                 margin: 0 5px;
+                max-width: calc(50% - 10px);
             }
             
             #clearBtn:first-child {
@@ -175,15 +202,45 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 2px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            
+            .container {
+                gap: 10px;
+                padding: 0 2px;
+            }
+            
+            .video-container,
+            .capture-container {
+                padding: 8px;
+            }
+            
+            video {
+                max-height: 35vh;
+            }
+            
+            #capture-result {
+                min-height: 25vh;
+                max-height: 35vh;
+            }
+            
             .button-container {
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
+                margin-top: 8px;
             }
             
             #clearBtn,
             #captureBtn {
                 margin: 0;
                 flex: none;
+                max-width: 100%;
             }
         }
 
@@ -216,14 +273,6 @@
                 margin-bottom: 15px;
             }
         }
-        @media (max-width: 480px) {
-    #captureBtn,
-    #clearBtn {
-        width: 100%;
-        margin-left: 0;
-    }
-}
-
     </style>
 </head>
 
