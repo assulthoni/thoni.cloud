@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Confidence Detector</title>
     <style>
         body {
@@ -23,8 +24,11 @@
 
         .container {
             display: flex;
-            gap: 30px;
-            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1000px;
         }
 
         .video-container,
@@ -35,11 +39,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 15px;
             background-color: #fff;
+            flex: 1 1 400px;
+            box-sizing: border-box;
         }
 
-        video {
-            width: 480px;
-            height: 360px;
+        video,
+        #capture-result img {
+            width: 100%;
+            height: auto;
             display: block;
             background-color: #000;
             border-radius: 8px;
@@ -53,7 +60,8 @@
             text-align: center;
         }
 
-        #clearBtn, #captureBtn {
+        #clearBtn,
+        #captureBtn {
             margin-top: 15px;
             padding: 10px 25px;
             font-size: 1em;
@@ -65,15 +73,17 @@
             transition: 0.3s;
         }
 
+        #clearBtn {
+            background-color: #eb7b5e;
+            margin-left: 10px;
+        }
+
         #captureBtn:hover {
             background-color: #487eb0;
         }
 
-        #capture-result img {
-            max-width: 480px;
-            border: 1px solid #dcdde1;
-            border-radius: 8px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        #clearBtn:hover {
+            background-color: #f2745b;
         }
 
         .result-label {
@@ -81,6 +91,18 @@
             color: #2f3640;
             margin-bottom: 5px;
             text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            #clearBtn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -94,7 +116,7 @@
             <video id="video" autoplay></video>
             <!-- <div id="score">Confidence: --%</div> -->
             <button id="captureBtn">Capture</button>
-            <button id="clearBtn" style="margin-left: 10px; background-color: #eb7b5e;">Clear Captures</button>
+            <button id="clearBtn">Clear Captures</button>
         </div>
 
         <!-- Right: Captured Image -->
