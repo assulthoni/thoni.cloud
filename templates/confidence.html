@@ -60,18 +60,15 @@
             text-align: center;
         }
 
-        #clearBtn,
-        #captureBtn {
-            margin-top: 15px;
-            padding: 10px 25px;
-            font-size: 1em;
-            background-color: #40739e;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        #captureBtn,
+#clearBtn {
+    display: inline-block;
+    width: 48%; /* Make them fit side by side on mobile */
+    min-width: 120px; /* Avoid shrinking too much */
+    margin: 10px 1% 0 1%; /* Small margins for spacing */
+    box-sizing: border-box;
+}
+
 
         #clearBtn {
             background-color: #eb7b5e;
@@ -104,6 +101,14 @@
                 margin-top: 10px;
             }
         }
+        @media (max-width: 480px) {
+    #captureBtn,
+    #clearBtn {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
     </style>
 </head>
 
