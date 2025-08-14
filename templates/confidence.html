@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Confidence Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f6fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2f3640;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .video-container,
+        .capture-container {
+            border: 2px solid #dcdde1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        video {
+            width: 480px;
+            height: 360px;
+            display: block;
+            background-color: #000;
+            border-radius: 8px;
+        }
+
+        #score {
+            margin-top: 10px;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2f3640;
+            text-align: center;
+        }
+
+        #clearBtn, #captureBtn {
+            margin-top: 15px;
+            padding: 10px 25px;
+            font-size: 1em;
+            background-color: #40739e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #captureBtn:hover {
+            background-color: #487eb0;
+        }
+
+        #capture-result img {
+            max-width: 480px;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-label {
+            font-weight: bold;
+            color: #2f3640;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Real-Time Confidence Detector</h1>
+
+    <div class="container">
+        <!-- Left: Video + Score + Capture Button -->
+        <div class="video-container">
+            <video id="video" autoplay></video>
+            <!-- <div id="score">Confidence: --%</div> -->
+            <button id="captureBtn">Capture</button>
+            <button id="clearBtn" style="margin-left: 10px; background-color: #eb7b5e;">Clear Captures</button>
+        </div>
+
+        <!-- Right: Captured Image -->
+        <div class="capture-container">
+            <div class="result-label">Captured Image</div>
+            <div id="capture-result">
+                <!-- Captured image will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
