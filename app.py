@@ -308,28 +308,32 @@ def calculate_confidence(img):
     x, y, w, h = max(faces, key=lambda f: f[2] * f[3])
     face_roi_gray = gray[y:y+h, x:x+w]
 
-    score = 70
+    score = 60  # new baseline
 
-    # Face size boost
+    # Face size boost (up to +10)
     face_area_ratio = (w * h) / (img.shape[0] * img.shape[1])
-    size_boost = min(face_area_ratio * 50, 5)
+    size_boost = min(face_area_ratio * 100, 10)  
     score += size_boost
-
-    # Smile boost
+    
+    # Smile boost (up to +20)
     smiles = smile_cascade.detectMultiScale(face_roi_gray, 1.7, 20)
     if len(smiles) > 0:
         smile_factor = min(len(smiles) / 3, 1.0)
-        score += smile_factor * 15
-
-    # Eyes boost
+        score += smile_factor * 20  
+    
+    # Eyes boost (up to +8)
     eyes = eye_cascade.detectMultiScale(face_roi_gray)
     if len(eyes) >= 2:
-        score += 7
+        score += 8
     elif len(eyes) == 1:
-        score += 3
-
+        score += 4
+    
+    # Random noise (±1)
     score += random.uniform(-1, 1)
-    score = max(70, min(score, 99))
+    
+    # Clamp score
+    score = max(60, min(score, 99))
+
 
     return round(score, 2), (x, y, w, h)
 
@@ -349,6 +353,7 @@ def capture_with_score():
             img[:,:,c] = (alpha*twibbon_resized[:,:,c] + (1-alpha)*img[:,:,c]).astype(np.uint8)
 
     score, _ = calculate_confidence(img)
+    score = int(round(score, 0))
 
     # Draw score on frame (clean, light-blue background, bottom)
     label = f"Confidence: {score}%"
@@ -381,8 +386,8 @@ def capture_with_score():
     file_path = os.path.join(CAPTURE_DIR, filename)
     cv2.imwrite(file_path, img)
 
-    # Return JSON with filename
-    return jsonify({"filename": filename})
+    # Return JSON with filename and score
+    return jsonify({"filename": filename, "score": score})
 
 @app.route("/result/<filename>")
 def result_page(filename):
